@@ -6,7 +6,7 @@
     <title>Meu Portfólio - Desenvolvedor Fullstack</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome para ícones -->
+    <!-- Font Awesome para ícones (ainda usado em outras seções) -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -92,8 +92,8 @@
       /* Fundo de estrelas */
       .stars {
         background: #0d001a
-          url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/123117/stars.png")
-          repeat top center;
+          url(imgs/vecteezy_lens-flare-light-special-effect_8507591.png) repeat
+          top center;
         position: fixed;
         top: 0;
         left: 0;
@@ -113,7 +113,7 @@
       }
       /* Fundo da seção Hero com efeito de paralaxe */
       #hero {
-        background-image: url("https://images.unsplash.com/photo-1543722530-d2c320790758?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&fit=max");
+        background-image: url(imgs/fundo-espaco-cosmo-realista-da-noite-estrelada-e-estrelas-brilhantes-via-lactea-e-galaxia-colorida-de-poeira-estelar.jpg);
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -128,6 +128,11 @@
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
+      }
+      .skill-icon {
+        width: 48px;
+        height: 48px;
+        margin: auto;
       }
     </style>
   </head>
@@ -219,7 +224,7 @@
         <h1
           class="text-4xl md:text-6xl font-extrabold text-[#b366ff] mt-2 mb-4"
         >
-          Nome do Desenvolvedor
+          Yssaky Assad Luz
         </h1>
         <h2 class="text-2xl md:text-4xl font-light text-white">
           Desenvolvedor Fullstack
@@ -253,7 +258,7 @@
             data-aos-duration="1000"
           >
             <img
-              src="https://placehold.co/400x400/1a0033/d0c0e0?text=Sua+Foto+Aqui"
+              src="imgs/1758425593603.jpg"
               alt="Sua Foto"
               class="rounded-full w-48 h-48 mx-auto md:w-full md:h-auto object-cover border-4 border-[#b366ff] shadow-xl"
             />
@@ -264,22 +269,32 @@
             data-aos-duration="1000"
           >
             <p class="text-lg leading-relaxed mb-6">
-              Olá! Sou um desenvolvedor fullstack com experiência na criação de
-              aplicações web robustas e escaláveis. Minha jornada na programação
-              começou com o objetivo de transformar ideias complexas em soluções
-              funcionais e elegantes. Sou apaixonado por resolver problemas e
-              aprender novas tecnologias.
+              Olá! Sou estudante de Bacharel em
+              <strong>Ciência da Computação</strong> e um desenvolvedor
+              fullstack com uma visão abrangente do universo da tecnologia.
+              Minha paixão vai além do desenvolvimento de software; sou um
+              entusiasta de <strong>Arquitetura de Software</strong>,
+              <strong>Estruturas de Dados</strong> e
+              <strong>Redes de Computadores</strong>.
             </p>
             <p class="text-lg leading-relaxed mb-6">
-              No frontend, busco sempre a melhor experiência de usuário,
-              utilizando ferramentas como **React** e **Next.js**. No backend,
-              construo APIs eficientes e confiáveis com **Node.js** e
-              **Express**. Tenho um bom conhecimento em bancos de dados como
-              **PostgreSQL** e **Firebase**, o que me permite projetar sistemas
-              completos do início ao fim.
+              Combinando uma base sólida em teoria da computação com habilidades
+              práticas em <strong>UX/UI</strong> e
+              <strong>Cibersegurança</strong>, busco criar soluções que são não
+              apenas funcionais e escaláveis, mas também seguras e intuitivas.
+            </p>
+            <p class="text-lg leading-relaxed mb-6">
+              Utilizo meu conhecimento em stacks de front-end, como
+              <strong>React</strong>, <strong>Next.js</strong> e
+              <strong>Tailwind</strong>, e back-end, incluindo
+              <strong>Node.js</strong>, <strong>Express</strong> e
+              <strong>Java</strong>, para construir aplicações completas e de
+              alta performance. Estou constantemente em busca de novos desafios
+              para aplicar meu conhecimento e transformar ideias em realidade.
             </p>
             <a
-              href="#"
+              href="global/C.V Estagio TI_Junior -- Yssaky.pdf"
+              download="Currículo_Yssaky.pdf"
               class="inline-block px-6 py-2 bg-gray-600 text-white font-semibold rounded-full hover:bg-gray-700 transition-colors duration-300"
             >
               Baixar Currículo
@@ -306,7 +321,11 @@
             data-aos="fade-up"
             data-aos-delay="100"
           >
-            <i class="fa-brands fa-html5 text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+              alt="HTML5"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">HTML5</h3>
           </div>
           <div
@@ -314,7 +333,11 @@
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            <i class="fa-brands fa-css3-alt text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+              alt="CSS3"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">CSS3</h3>
           </div>
           <div
@@ -322,7 +345,11 @@
             data-aos="fade-up"
             data-aos-delay="300"
           >
-            <i class="fa-brands fa-js-square text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+              alt="JavaScript"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">JavaScript</h3>
           </div>
           <div
@@ -330,7 +357,11 @@
             data-aos="fade-up"
             data-aos-delay="400"
           >
-            <i class="fa-brands fa-react text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
+              alt="React"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">React</h3>
           </div>
           <div
@@ -338,7 +369,11 @@
             data-aos="fade-up"
             data-aos-delay="500"
           >
-            <i class="fa-solid fa-bolt text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg"
+              alt="Next.js"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">Next.js</h3>
           </div>
           <div
@@ -346,7 +381,11 @@
             data-aos="fade-up"
             data-aos-delay="600"
           >
-            <i class="fa-solid fa-swatchbook text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"
+              alt="Tailwind CSS"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">Tailwind CSS</h3>
           </div>
           <div
@@ -354,7 +393,11 @@
             data-aos="fade-up"
             data-aos-delay="700"
           >
-            <i class="fa-brands fa-bootstrap text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg"
+              alt="Bootstrap"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">Bootstrap</h3>
           </div>
           <div
@@ -362,7 +405,11 @@
             data-aos="fade-up"
             data-aos-delay="800"
           >
-            <i class="fa-solid fa-pencil-ruler text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"
+              alt="UX/UI"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">UX/UI</h3>
           </div>
           <div
@@ -370,7 +417,11 @@
             data-aos="fade-up"
             data-aos-delay="900"
           >
-            <i class="fa-brands fa-wordpress text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-original.svg"
+              alt="Wordpress"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">Wordpress</h3>
           </div>
 
@@ -380,7 +431,11 @@
             data-aos="fade-up"
             data-aos-delay="1000"
           >
-            <i class="fa-solid fa-server text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"
+              alt="Express"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">Express</h3>
           </div>
           <div
@@ -388,7 +443,11 @@
             data-aos="fade-up"
             data-aos-delay="1100"
           >
-            <i class="fa-brands fa-node-js text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
+              alt="Node.js"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">Node.js</h3>
           </div>
           <div
@@ -396,7 +455,11 @@
             data-aos="fade-up"
             data-aos-delay="1200"
           >
-            <i class="fa-brands fa-typescript text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg"
+              alt="TypeScript"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">TypeScript</h3>
           </div>
           <div
@@ -404,7 +467,11 @@
             data-aos="fade-up"
             data-aos-delay="1300"
           >
-            <i class="fa-brands fa-java text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg"
+              alt="Java"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">Java</h3>
           </div>
           <div
@@ -412,7 +479,11 @@
             data-aos="fade-up"
             data-aos-delay="1400"
           >
-            <i class="fa-brands fa-php text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg"
+              alt="PHP"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">PHP</h3>
           </div>
 
@@ -422,7 +493,11 @@
             data-aos="fade-up"
             data-aos-delay="1500"
           >
-            <i class="fa-solid fa-database text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
+              alt="MySQL"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">MySQL</h3>
           </div>
           <div
@@ -430,7 +505,11 @@
             data-aos="fade-up"
             data-aos-delay="1600"
           >
-            <i class="fa-solid fa-fire text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg"
+              alt="Firebase"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">Firebase</h3>
           </div>
           <div
@@ -438,7 +517,11 @@
             data-aos="fade-up"
             data-aos-delay="1700"
           >
-            <i class="fa-solid fa-database text-5xl text-[#b366ff]"></i>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"
+              alt="PostgreSQL"
+              class="skill-icon"
+            />
             <h3 class="text-xl font-bold mt-4">PostgreSQL</h3>
           </div>
         </div>
@@ -463,28 +546,28 @@
             data-aos-duration="1000"
           >
             <img
-              src="https://placehold.co/600x400/1a0033/d0c0e0?text=Projeto+1"
+              src="imgs/CardapioOnline.png"
               alt="Projeto 1"
               class="w-full h-48 object-cover"
             />
             <div class="p-6">
               <h3 class="text-2xl font-bold text-[#b366ff] mb-2">
-                Nome do Projeto 1
+                Cardápio Online
               </h3>
               <p class="text-sm text-[#b0a0c0]">
-                Descrição breve do projeto. Mencione as tecnologias usadas, como
-                React, Node.js e MySQL, e o que ele faz.
+                Cardapio de Hamburgueria feito em HTML, CSS, Tailwind, JS e API
+                Whatsapp Web
               </p>
               <div class="mt-4 flex space-x-4">
                 <a
-                  href="#"
+                  href="https://cardapio-de-hamburgueria.vercel.app/"
                   class="text-blue-400 hover:text-blue-500 transition-colors duration-300"
                 >
                   <i class="fa-solid fa-link"></i>
                   Demo
                 </a>
                 <a
-                  href="#"
+                  href="https://github.com/Assad-Lz/Cardapio-de-Hamburgueria"
                   class="text-gray-400 hover:text-gray-500 transition-colors duration-300"
                 >
                   <i class="fa-brands fa-github"></i>
@@ -501,28 +584,28 @@
             data-aos-delay="100"
           >
             <img
-              src="https://placehold.co/600x400/1a0033/d0c0e0?text=Projeto+2"
+              src="imgs/BuscadordeCEp.png"
               alt="Projeto 2"
               class="w-full h-48 object-cover"
             />
             <div class="p-6">
               <h3 class="text-2xl font-bold text-[#b366ff] mb-2">
-                Nome do Projeto 2
+                Buscador de CEP
               </h3>
               <p class="text-sm text-[#b0a0c0]">
-                Descrição breve do projeto. Mencione as tecnologias usadas, como
-                Next.js, TypeScript e Firebase, e o que ele faz.
+                Buscador de CEP feito com React, CSS, API ViaCEP. Projeto para
+                estudos de API Rest.
               </p>
               <div class="mt-4 flex space-x-4">
                 <a
-                  href="#"
+                  href="https://buscador-de-cep-woad-nine.vercel.app/"
                   class="text-blue-400 hover:text-blue-500 transition-colors duration-300"
                 >
                   <i class="fa-solid fa-link"></i>
                   Demo
                 </a>
                 <a
-                  href="#"
+                  href="https://github.com/Assad-Lz/Buscador-de-CEP"
                   class="text-gray-400 hover:text-gray-500 transition-colors duration-300"
                 >
                   <i class="fa-brands fa-github"></i>
@@ -539,28 +622,29 @@
             data-aos-delay="200"
           >
             <img
-              src="https://placehold.co/600x400/1a0033/d0c0e0?text=Projeto+3"
+              src="imgs/VintageBarber.png"
               alt="Projeto 3"
               class="w-full h-48 object-cover"
             />
             <div class="p-6">
               <h3 class="text-2xl font-bold text-[#b366ff] mb-2">
-                Nome do Projeto 3
+                Vintage Barber
               </h3>
               <p class="text-sm text-[#b0a0c0]">
-                Descrição breve do projeto. Mencione as tecnologias usadas, como
-                Java, PHP e PostgreSQL, e o que ele faz.
+                Landing page estatica criada para fins estudantis, a landing
+                page simula uma pagina de uma barbearia em São Paulo, as
+                tecnologias utilizadas foram HTML, CSS e JavaScript
               </p>
               <div class="mt-4 flex space-x-4">
                 <a
-                  href="#"
+                  href="https://vintage-barber-f4bv.vercel.app/"
                   class="text-blue-400 hover:text-blue-500 transition-colors duration-300"
                 >
                   <i class="fa-solid fa-link"></i>
                   Demo
                 </a>
                 <a
-                  href="#"
+                  href="https://github.com/Assad-Lz/Vintage-Barber"
                   class="text-gray-400 hover:text-gray-500 transition-colors duration-300"
                 >
                   <i class="fa-brands fa-github"></i>
@@ -577,28 +661,29 @@
             data-aos-delay="300"
           >
             <img
-              src="https://placehold.co/600x400/1a0033/d0c0e0?text=Projeto+4"
+              src="imgs/Imobiliaria.png"
               alt="Projeto 4"
               class="w-full h-48 object-cover"
             />
             <div class="p-6">
               <h3 class="text-2xl font-bold text-[#b366ff] mb-2">
-                Nome do Projeto 4
+                Vivae Imobiliária
               </h3>
               <p class="text-sm text-[#b0a0c0]">
-                Descrição do quarto projeto. Mencione as tecnologias usadas e o
-                que ele faz.
+                Landing page estatica criada para fins estudantis, a landing
+                page simula uma pagina de uma imobiliaria em São Paulo, as
+                tecnologias utilizadas foram HTML, CSS e JavaScript
               </p>
               <div class="mt-4 flex space-x-4">
                 <a
-                  href="#"
+                  href="https://vivae-imobiliaria.vercel.app/"
                   class="text-blue-400 hover:text-blue-500 transition-colors duration-300"
                 >
                   <i class="fa-solid fa-link"></i>
                   Demo
                 </a>
                 <a
-                  href="#"
+                  href="https://github.com/Assad-Lz/Vivae-Imobiliaria"
                   class="text-gray-400 hover:text-gray-500 transition-colors duration-300"
                 >
                   <i class="fa-brands fa-github"></i>
@@ -783,19 +868,19 @@
         </a>
         <div class="mt-8 flex justify-center space-x-6 text-3xl">
           <a
-            href="https://linkedin.com/in/seu-usuario"
+            href="https://www.linkedin.com/in/yssaky-assad-luz-4562b6236/"
             class="hover:text-blue-400 transition-colors duration-300"
             ><i class="fa-brands fa-linkedin"></i
           ></a>
           <a
-            href="https://github.com/seu-usuario"
+            href="https://github.com/Assad-Lzss"
             class="hover:text-gray-400 transition-colors duration-300"
             ><i class="fa-brands fa-github"></i
           ></a>
           <a
-            href="https://twitter.com/seu-usuario"
+            href="https://www.instagram.com/off_zacky/?igsh=MXJkejlkMnh5MGJoMA%3D%3D#s"
             class="hover:text-blue-300 transition-colors duration-300"
-            ><i class="fa-brands fa-twitter"></i
+            ><i class="fa-brands fa-instagram"></i
           ></a>
         </div>
       </div>
@@ -803,8 +888,8 @@
 
     <!-- Footer -->
     <footer class="py-8 text-center text-sm text-[#a0a0b0]">
-      &copy; <span id="current-year"></span> Meu Portfólio. Feito com amor e
-      código.
+      &copy; <span id="current-year"></span> Yssaky - Meu Portfólio. Feito com
+      amor e código.
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
