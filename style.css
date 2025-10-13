@@ -1,0 +1,278 @@
+/* Reset básico para melhor consistência */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fonte e cores base */
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background-color: #0d001a;
+  color: #e5e0f7;
+  overflow-x: hidden;
+  line-height: 1.6;
+  min-height: 100vh;
+  letter-spacing: 0.01em;
+}
+
+/* Container centralizado */
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Títulos de seção com destaque */
+.section-title {
+  position: relative;
+  display: inline-block;
+  color: #b366ff;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #b366ff 0%, #6e34a2 100%);
+  margin: 0.5rem auto 0 auto;
+  border-radius: 9999px;
+  opacity: 0.8;
+}
+
+/* Cartões com efeito glassmorphism */
+.card {
+  background: rgba(26, 0, 51, 0.85);
+  box-shadow: 0 8px 32px 0 rgba(179, 102, 255, 0.15);
+  border-radius: 1.25rem;
+  border: 1px solid rgba(179, 102, 255, 0.08);
+  backdrop-filter: blur(6px);
+  transition: transform 0.25s cubic-bezier(0.4, 2, 0.6, 1), box-shadow 0.25s;
+  padding: 2rem 1.5rem;
+}
+.card:hover {
+  transform: translateY(-8px) scale(1.025);
+  box-shadow: 0 16px 32px -4px rgba(179, 102, 255, 0.25),
+    0 4px 12px -2px rgba(179, 102, 255, 0.15);
+  border-color: #b366ff;
+}
+
+/* Animações */
+.animate-fade-in {
+  animation: fadeIn 1.5s forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-pulse {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+@keyframes pulse-glow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(179, 102, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 18px 4px rgba(179, 102, 255, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(179, 102, 255, 0.7);
+  }
+}
+
+/* Fundo de estrelas */
+.stars {
+  background: #0d001a
+    url(../imgs/vecteezy_lens-flare-light-special-effect_8507591.png) repeat top
+    center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0.45;
+  animation: star-move 200s linear infinite;
+  pointer-events: none;
+}
+@keyframes star-move {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 10000px;
+  }
+}
+
+/* Hero com efeito de paralaxe e overlay */
+#hero {
+  background-image: url(../imgs/fundo-espaco-cosmo-realista-da-noite-estrelada-e-estrelas-brilhantes-via-lactea-e-galaxia-colorida-de-poeira-estelar.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(13, 0, 26, 0.7) 60%,
+    rgba(179, 102, 255, 0.12) 100%
+  );
+  z-index: 1;
+}
+#hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Botões principais */
+a,
+button {
+  outline: none;
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+a.hero-pulse,
+button.hero-pulse {
+  box-shadow: 0 4px 24px 0 rgba(179, 102, 255, 0.18);
+  border: none;
+}
+a.hero-pulse:hover,
+button.hero-pulse:hover {
+  background: linear-gradient(90deg, #b366ff 60%, #6e34a2 100%);
+  color: #fff;
+  transform: scale(1.07);
+  box-shadow: 0 8px 32px 0 rgba(179, 102, 255, 0.25);
+}
+
+/* Ícones de habilidades */
+.skill-icon {
+  width: 52px;
+  height: 52px;
+  margin: auto;
+  filter: drop-shadow(0 2px 8px #b366ff33);
+  transition: filter 0.2s, transform 0.2s;
+}
+.skill-icon:hover {
+  filter: drop-shadow(0 4px 16px #b366ff99);
+  transform: scale(1.08) rotate(-4deg);
+}
+
+/* Inputs e formulários */
+input,
+textarea {
+  background: rgba(26, 0, 51, 0.7);
+  border: 1.5px solid #b366ff44;
+  border-radius: 0.75rem;
+  color: #e5e0f7;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+input:focus,
+textarea:focus {
+  border-color: #b366ff;
+  box-shadow: 0 0 0 2px #b366ff44;
+  outline: none;
+}
+
+/* Navbar e menu mobile */
+header {
+  box-shadow: 0 2px 12px 0 rgba(179, 102, 255, 0.08);
+  background: rgba(13, 0, 26, 0.92);
+  backdrop-filter: blur(8px);
+}
+nav a {
+  color: #e5e0f7;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+nav a:hover,
+nav a.active {
+  background: #b366ff22;
+  color: #b366ff;
+}
+#mobile-menu {
+  background: rgba(26, 0, 51, 0.98);
+  border-radius: 0 0 1.5rem 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(179, 102, 255, 0.12);
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid #b366ff22;
+  background: rgba(13, 0, 26, 0.96);
+  color: #a0a0b0;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+/* Responsividade extra */
+@media (max-width: 900px) {
+  .container {
+    max-width: 98vw;
+  }
+  .card {
+    padding: 1.25rem 0.75rem;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .section-title {
+    font-size: 1.3rem;
+  }
+  .card {
+    padding: 1rem 0.5rem;
+  }
+  #hero {
+    min-height: 70vh;
+  }
+}
+
+/* Scrollbar customizada */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #1a0033;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(120deg, #b366ff 0%, #6e34a2 100%);
+  border-radius: 8px;
+}
