@@ -31,7 +31,7 @@
         --dark: #030005;
       }
 
-      /* --- 1. PRELOADER (Tela de Boot) --- */
+      /* --- 1. PRELOADER --- */
       #preloader {
         position: fixed;
         top: 0;
@@ -64,7 +64,7 @@
         transition: width 0.5s;
       }
 
-      /* --- 2. BACKGROUNDS & TEXTURES --- */
+      /* --- 2. BACKGROUNDS --- */
       body {
         margin: 0;
         background-color: var(--dark);
@@ -74,7 +74,6 @@
         cursor: auto;
       }
 
-      /* Cyber Grid */
       .cyber-grid {
         position: fixed;
         top: 0;
@@ -96,7 +95,6 @@
         );
       }
 
-      /* Noise Overlay */
       .noise-overlay {
         position: fixed;
         top: 0;
@@ -109,7 +107,6 @@
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
       }
 
-      /* Canvas 3D */
       #bg-canvas {
         position: fixed;
         top: 0;
@@ -119,22 +116,12 @@
         z-index: -50;
       }
 
-      /* --- 3. CURSOR PERSONALIZADO --- */
-      /* Desativa cursor customizado em telas touch/mobile */
-      @media (hover: none) {
-        #cursor,
-        .cursor-trail {
-          display: none !important;
-        }
-        body {
-          cursor: auto !important;
-        }
-      }
+      /* --- 3. CURSOR & RESPONSIVIDADE --- */
 
+      /* DESKTOP (Com Mouse) */
       body.custom-cursor-active {
         cursor: none;
       }
-
       #cursor {
         position: fixed;
         top: 0;
@@ -151,12 +138,6 @@
         opacity: 0;
         display: none;
       }
-      @media (hover: hover) and (pointer: fine) {
-        #cursor {
-          display: block;
-        }
-      }
-
       #cursor.hovered {
         width: 60px;
         height: 60px;
@@ -175,8 +156,6 @@
         border-radius: 50%;
         transform: translate(-50%, -50%);
       }
-
-      /* Rastro do Mouse */
       .cursor-trail {
         position: fixed;
         width: 8px;
@@ -187,6 +166,24 @@
         z-index: 2147483646;
         transform: translate(-50%, -50%);
         transition: opacity 0.2s;
+      }
+
+      /* MOBILE/TABLET (Sem Mouse ou Telas < 1024px) */
+      @media (hover: none), (max-width: 1024px) {
+        #cursor,
+        .cursor-trail,
+        #trails-container {
+          display: none !important; /* Some visualmente */
+        }
+        body {
+          cursor: auto !important; /* Volta o cursor nativo */
+        }
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        #cursor {
+          display: block;
+        }
       }
 
       /* --- 4. TYPOGRAPHY & ANIMATIONS --- */
@@ -270,7 +267,6 @@
         z-index: 10;
       }
 
-      /* Scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -285,7 +281,7 @@
         background: var(--primary);
       }
 
-      /* Marquee */
+      /* --- MARQUEE --- */
       .marquee-container {
         width: 100%;
         overflow: hidden;
@@ -300,8 +296,17 @@
       .marquee-content {
         display: flex;
         white-space: nowrap;
+        /* VELOCIDADE DESKTOP */
         animation: scroll 25s linear infinite;
       }
+
+      /* VELOCIDADE MOBILE/TABLET (Muito mais rápida) */
+      @media (max-width: 1024px) {
+        .marquee-content {
+          animation-duration: 8s !important;
+        }
+      }
+
       .marquee-item {
         font-family: 'Syne', sans-serif;
         font-weight: 800;
@@ -327,12 +332,9 @@
         pointer-events: none;
       }
 
-      /* Fix para texto do About */
       #about h2 .kinetic-char {
         padding-right: 15px;
       }
-
-      /* Mobile Menu Transition */
       #mobile-menu {
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       }
@@ -352,6 +354,7 @@
 
     <div id="cursor"></div>
     <div id="trails-container"></div>
+
     <div class="noise-overlay"></div>
     <div class="cyber-grid"></div>
     <canvas id="bg-canvas"></canvas>
@@ -394,7 +397,6 @@
         class="hidden md:inline-block magnetic-btn border border-white/20 px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-black transition-all hover-trigger tracking-widest"
         >FALE COMIGO</a
       >
-
       <button id="menu-btn" class="md:hidden text-2xl hover-trigger">
         <i class="fa-solid fa-bars"></i>
       </button>
@@ -410,7 +412,6 @@
       >
         <i class="fa-solid fa-xmark"></i>
       </button>
-
       <a
         href="#about"
         class="mobile-link text-3xl font-display font-bold tracking-tighter hover:text-[#b366ff]"
@@ -431,7 +432,6 @@
         class="mobile-link text-3xl font-display font-bold tracking-tighter hover:text-[#00f3ff]"
         >CONTATO</a
       >
-
       <div class="flex gap-6 mt-8">
         <a href="#" class="text-2xl"><i class="fa-brands fa-linkedin"></i></a>
         <a href="#" class="text-2xl"><i class="fa-brands fa-github"></i></a>
@@ -446,7 +446,6 @@
         <p class="text-[#00f3ff] font-mono text-sm mb-4 reveal-item">
           > SYSTEM READY
         </p>
-
         <div class="kinetic-container">
           <h1
             class="text-[15vw] md:text-[13vw] leading-[0.8] font-extrabold tracking-tighter text-white mix-blend-overlay opacity-50 select-none absolute top-0 left-0 pointer-events-none"
@@ -464,7 +463,6 @@
             DEVELOPER
           </h1>
         </div>
-
         <div
           class="mt-12 flex flex-col md:flex-row gap-12 items-start border-t border-white/10 pt-8 reveal-item"
         >
@@ -477,7 +475,6 @@
             <span class="text-white">arte</span>. Foco em performance,
             interatividade e impacto visual.
           </p>
-
           <div class="flex gap-4">
             <a
               href="#projects"
@@ -518,7 +515,6 @@
       <div
         class="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-[#b366ff] opacity-10 blur-[120px] pointer-events-none"
       ></div>
-
       <div class="container mx-auto grid lg:grid-cols-2 gap-12 items-stretch">
         <div
           class="relative group hover-trigger reveal-scroll order-2 lg:order-1 h-[400px] md:h-[500px] lg:h-full"
@@ -527,11 +523,9 @@
             <div
               class="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-[#00f3ff] rounded-tl-2xl transition-all duration-500 group-hover:w-20 group-hover:h-20"
             ></div>
-
             <div
               class="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-[#b366ff] rounded-br-2xl transition-all duration-500 group-hover:w-20 group-hover:h-20"
             ></div>
-
             <div
               class="absolute top-0 right-0 w-3 h-3 bg-[#b366ff]/50 group-hover:bg-[#b366ff] transition-colors"
             ></div>
@@ -539,20 +533,17 @@
               class="absolute bottom-0 left-0 w-3 h-3 bg-[#00f3ff]/50 group-hover:bg-[#00f3ff] transition-colors"
             ></div>
           </div>
-
           <div
             class="relative w-full h-full rounded-xl overflow-hidden border border-white/5 bg-black/50"
           >
             <div
               class="absolute inset-0 bg-gradient-to-tr from-[#b366ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
             ></div>
-
             <img
               src="imgs/imagemPortifolioPerfil.jpg"
               alt="Profile"
               class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110"
             />
-
             <div
               class="absolute bottom-6 right-6 glass-card px-4 py-2 flex items-center gap-3 border border-[#00f3ff]/30 z-20"
             >
@@ -570,7 +561,6 @@
             </div>
           </div>
         </div>
-
         <div class="reveal-scroll order-1 lg:order-2 flex flex-col">
           <div
             class="glass-card p-6 md:p-10 relative overflow-hidden group/card h-full flex flex-col justify-center"
@@ -585,13 +575,11 @@
                 <div class="w-2 h-2 rounded-full bg-green-500"></div>
               </div>
             </div>
-
             <h2
               class="text-3xl md:text-5xl font-bold mb-6 split-word text-white whitespace-normal lg:whitespace-nowrap leading-tight"
             >
               ALÉM DO CÓDIGO
             </h2>
-
             <p
               class="text-base md:text-lg text-gray-300 leading-relaxed mb-8 border-l-2 border-[#b366ff]/50 pl-4"
             >
@@ -603,7 +591,6 @@
                 >arquieto ecossistemas digitais.</span
               >
             </p>
-
             <div class="grid grid-cols-1 gap-4 mb-10">
               <div
                 class="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-white/5 hover:border-[#b366ff]/50 transition-colors group/item"
@@ -622,7 +609,6 @@
                   </p>
                 </div>
               </div>
-
               <div
                 class="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-white/5 hover:border-[#00f3ff]/50 transition-colors group/item"
               >
@@ -638,7 +624,6 @@
                   </p>
                 </div>
               </div>
-
               <div
                 class="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-white/5 hover:border-pink-500/50 transition-colors group/item"
               >
@@ -657,7 +642,6 @@
                 </div>
               </div>
             </div>
-
             <a
               href="global/C.V Estagio TI_Junior - Yssaky (1).pdf"
               download
@@ -890,7 +874,6 @@
               </div>
             </div>
           </div>
-
           <div
             class="group cursor-pointer hover-trigger project-card-anim mt-0 md:mt-20"
           >
@@ -924,7 +907,6 @@
               </div>
             </div>
           </div>
-
           <div class="group cursor-pointer hover-trigger project-card-anim">
             <div class="glass-card p-2 mb-6">
               <div class="project-img-container">
@@ -956,7 +938,6 @@
               </div>
             </div>
           </div>
-
           <div
             class="group cursor-pointer hover-trigger project-card-anim mt-0 md:mt-20"
           >
@@ -990,7 +971,6 @@
               </div>
             </div>
           </div>
-
           <div class="group cursor-pointer hover-trigger project-card-anim">
             <div class="glass-card p-2 mb-6">
               <div class="project-img-container">
@@ -1016,7 +996,6 @@
               </div>
             </div>
           </div>
-
           <div
             class="group cursor-pointer hover-trigger project-card-anim mt-0 md:mt-20"
           >
@@ -1050,7 +1029,6 @@
               </div>
             </div>
           </div>
-
           <div class="group cursor-pointer hover-trigger project-card-anim">
             <div class="glass-card p-2 mb-6">
               <div class="project-img-container">
@@ -1082,7 +1060,6 @@
               </div>
             </div>
           </div>
-
           <div
             class="group cursor-pointer hover-trigger project-card-anim mt-0 md:mt-20"
           >
@@ -1110,7 +1087,6 @@
               </div>
             </div>
           </div>
-
           <div class="group cursor-pointer hover-trigger project-card-anim">
             <div class="glass-card p-2 mb-6">
               <div class="project-img-container">
@@ -1163,7 +1139,6 @@
         class="magnetic-btn text-xl md:text-4xl border-b border-white/30 pb-2 hover:text-[#b366ff] hover:border-[#b366ff] transition-all hover-trigger break-all md:break-normal"
         >assadyssaky@gmail.com</a
       >
-
       <div class="mt-16 flex gap-8">
         <a
           href="#"
@@ -1181,7 +1156,6 @@
           ><i class="fa-brands fa-instagram"></i
         ></a>
       </div>
-
       <footer class="absolute bottom-10 text-xs text-gray-600">
         © 2024 YSSAKY. CODED WITH PASSION.
       </footer>
@@ -1205,7 +1179,7 @@
           },
         });
 
-        // 2. MOBILE MENU LOGIC
+        // 2. MOBILE MENU
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const closeMenuBtn = document.getElementById('close-menu');
@@ -1229,11 +1203,11 @@
         const hoverTriggers = document.querySelectorAll('.hover-trigger');
         const trails = [];
 
-        // Check if device supports hover (Desktop)
+        // Verificação de toque (Mobile/Tablet)
         const isTouch = window.matchMedia('(hover: none)').matches;
 
+        // Só ativa cursor se NÃO for touch (Desktop)
         if (!isTouch) {
-          // Criar rastros
           for (let i = 0; i < 12; i++) {
             const div = document.createElement('div');
             div.className = 'cursor-trail';
@@ -1249,7 +1223,6 @@
             mouseY = e.clientY;
             gsap.to(cursor, { opacity: 1, duration: 0.2 });
             document.body.classList.add('custom-cursor-active');
-
             gsap.to(cursor, {
               x: mouseX,
               y: mouseY,
@@ -1287,7 +1260,7 @@
             );
           });
 
-          // Magnetic BTNS only on Desktop
+          // Magnetic BTNS (Só desktop)
           document.querySelectorAll('.magnetic-btn').forEach((btn) => {
             btn.addEventListener('mousemove', (e) => {
               const r = btn.getBoundingClientRect();
@@ -1317,7 +1290,6 @@
             span.className = 'kinetic-char';
             word.appendChild(span);
           });
-
           gsap.to(word.querySelectorAll('.kinetic-char'), {
             y: '0%',
             stagger: 0.05,
@@ -1340,7 +1312,6 @@
           const ren = new THREE.WebGLRenderer({ canvas: cvs, alpha: true });
           ren.setSize(window.innerWidth, window.innerHeight);
 
-          // Stars
           const sGeo = new THREE.BufferGeometry();
           const sCnt = 1000;
           const sPos = new Float32Array(sCnt * 3);
@@ -1356,7 +1327,6 @@
           const stars = new THREE.Points(sGeo, sMat);
           scene.add(stars);
 
-          // Geometries
           const geoGroup = new THREE.Group();
           const material = new THREE.MeshBasicMaterial({
             color: 0xb366ff,
@@ -1364,28 +1334,24 @@
             transparent: true,
             opacity: 0.15,
           });
-
           const ico = new THREE.Mesh(
             new THREE.IcosahedronGeometry(1, 0),
             material
           );
           ico.position.set(4, 2, -5);
           geoGroup.add(ico);
-
           const torus = new THREE.Mesh(
             new THREE.TorusGeometry(0.8, 0.2, 16, 100),
             material
           );
           torus.position.set(-4, -2, -5);
           geoGroup.add(torus);
-
           const ico2 = new THREE.Mesh(
             new THREE.IcosahedronGeometry(0.5, 0),
             material
           );
           ico2.position.set(-5, 3, -8);
           geoGroup.add(ico2);
-
           scene.add(geoGroup);
           cam.position.z = 3;
 
@@ -1400,21 +1366,17 @@
           function animate() {
             const t = clock.getElapsedTime();
             stars.rotation.y = t * 0.02;
-
             geoGroup.rotation.y = t * 0.1 + mX * 0.2;
             geoGroup.rotation.x = mY * 0.2;
-
             ico.rotation.x = t * 0.2;
             ico.rotation.y = t * 0.2;
             torus.rotation.x = t * 0.15;
             torus.rotation.y = t * 0.1;
             ico2.rotation.x = -t * 0.3;
-
             ren.render(scene, cam);
             requestAnimationFrame(animate);
           }
           animate();
-
           window.addEventListener('resize', () => {
             cam.aspect = window.innerWidth / window.innerHeight;
             cam.updateProjectionMatrix();
