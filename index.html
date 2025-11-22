@@ -74,7 +74,7 @@
         cursor: auto;
       }
 
-      /* Cyber Grid (Aquele fundo quadriculado moderno) */
+      /* Cyber Grid */
       .cyber-grid {
         position: fixed;
         top: 0;
@@ -120,6 +120,17 @@
       }
 
       /* --- 3. CURSOR PERSONALIZADO --- */
+      /* Desativa cursor customizado em telas touch/mobile */
+      @media (hover: none) {
+        #cursor,
+        .cursor-trail {
+          display: none !important;
+        }
+        body {
+          cursor: auto !important;
+        }
+      }
+
       body.custom-cursor-active {
         cursor: none;
       }
@@ -186,7 +197,6 @@
         font-family: 'Syne', sans-serif;
       }
 
-      /* Kinetic Text (Letras subindo) */
       .kinetic-text {
         overflow: hidden;
         display: inline-block;
@@ -211,7 +221,6 @@
         overflow: hidden;
         position: relative;
       }
-      /* Efeito de brilho interno ao passar o mouse */
       .glass-card::before {
         content: '';
         position: absolute;
@@ -232,7 +241,6 @@
       .glass-card:hover::before {
         left: 150%;
       }
-
       .glass-card:hover {
         border-color: var(--primary);
         transform: translateY(-8px);
@@ -318,9 +326,15 @@
         opacity: 0.3;
         pointer-events: none;
       }
-      /* --- FORÇAR ESPAÇAMENTO NO TÍTULO "ALÉM DO CÓDIGO" --- */
+
+      /* Fix para texto do About */
       #about h2 .kinetic-char {
-        padding-right: 15px; /* Ajuste este número para separar mais ou menos */
+        padding-right: 15px;
+      }
+
+      /* Mobile Menu Transition */
+      #mobile-menu {
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       }
     </style>
   </head>
@@ -343,10 +357,10 @@
     <canvas id="bg-canvas"></canvas>
 
     <div
-      class="glow-spot bg-purple-600 w-[600px] h-[600px] top-0 left-0 animate-pulse"
+      class="glow-spot bg-purple-600 w-[300px] h-[300px] md:w-[600px] md:h-[600px] top-0 left-0 animate-pulse"
     ></div>
     <div
-      class="glow-spot bg-cyan-500 w-[500px] h-[500px] bottom-0 right-0 animate-pulse"
+      class="glow-spot bg-cyan-500 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bottom-0 right-0 animate-pulse"
       style="animation-delay: 2s"
     ></div>
 
@@ -380,10 +394,49 @@
         class="hidden md:inline-block magnetic-btn border border-white/20 px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-black transition-all hover-trigger tracking-widest"
         >FALE COMIGO</a
       >
-      <button class="md:hidden text-2xl hover-trigger">
+
+      <button id="menu-btn" class="md:hidden text-2xl hover-trigger">
         <i class="fa-solid fa-bars"></i>
       </button>
     </nav>
+
+    <div
+      id="mobile-menu"
+      class="fixed inset-0 bg-black/95 backdrop-blur-xl z-[60] transform translate-x-full flex flex-col justify-center items-center gap-8 text-white"
+    >
+      <button
+        id="close-menu"
+        class="absolute top-6 right-6 text-3xl p-4 text-white/80 hover:text-[#b366ff]"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <a
+        href="#about"
+        class="mobile-link text-3xl font-display font-bold tracking-tighter hover:text-[#b366ff]"
+        >SOBRE</a
+      >
+      <a
+        href="#skills"
+        class="mobile-link text-3xl font-display font-bold tracking-tighter hover:text-[#00f3ff]"
+        >SKILLS</a
+      >
+      <a
+        href="#projects"
+        class="mobile-link text-3xl font-display font-bold tracking-tighter hover:text-[#b366ff]"
+        >PROJETOS</a
+      >
+      <a
+        href="#contact"
+        class="mobile-link text-3xl font-display font-bold tracking-tighter hover:text-[#00f3ff]"
+        >CONTATO</a
+      >
+
+      <div class="flex gap-6 mt-8">
+        <a href="#" class="text-2xl"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#" class="text-2xl"><i class="fa-brands fa-github"></i></a>
+      </div>
+    </div>
 
     <section
       id="hero"
@@ -396,17 +449,17 @@
 
         <div class="kinetic-container">
           <h1
-            class="text-[13vw] leading-[0.8] font-extrabold tracking-tighter text-white mix-blend-overlay opacity-50 select-none absolute top-0 left-0 pointer-events-none"
+            class="text-[15vw] md:text-[13vw] leading-[0.8] font-extrabold tracking-tighter text-white mix-blend-overlay opacity-50 select-none absolute top-0 left-0 pointer-events-none"
           >
             CODE
           </h1>
           <h1
-            class="text-6xl md:text-9xl font-extrabold leading-none tracking-tighter text-white mb-2 split-word"
+            class="text-5xl md:text-9xl font-extrabold leading-none tracking-tighter text-white mb-2 split-word"
           >
             CREATIVE
           </h1>
           <h1
-            class="text-6xl md:text-9xl font-extrabold leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#b366ff] to-[#00f3ff] split-word"
+            class="text-5xl md:text-9xl font-extrabold leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#b366ff] to-[#00f3ff] split-word"
           >
             DEVELOPER
           </h1>
@@ -415,7 +468,9 @@
         <div
           class="mt-12 flex flex-col md:flex-row gap-12 items-start border-t border-white/10 pt-8 reveal-item"
         >
-          <p class="max-w-lg text-gray-400 text-lg leading-relaxed">
+          <p
+            class="max-w-lg text-gray-400 text-base md:text-lg leading-relaxed"
+          >
             Olá, sou <strong>Yssaky Assad Luz</strong>. Especialista em criar
             experiências digitais onde a
             <span class="text-white">engenharia</span> encontra a
@@ -459,14 +514,14 @@
       </div>
     </div>
 
-    <section id="about" class="py-32 px-6 relative">
+    <section id="about" class="py-20 md:py-32 px-6 relative">
       <div
         class="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-[#b366ff] opacity-10 blur-[120px] pointer-events-none"
       ></div>
 
       <div class="container mx-auto grid lg:grid-cols-2 gap-12 items-stretch">
         <div
-          class="relative group hover-trigger reveal-scroll order-2 lg:order-1 h-full"
+          class="relative group hover-trigger reveal-scroll order-2 lg:order-1 h-[400px] md:h-[500px] lg:h-full"
         >
           <div class="absolute -inset-2 pointer-events-none z-20">
             <div
@@ -518,7 +573,7 @@
 
         <div class="reveal-scroll order-1 lg:order-2 flex flex-col">
           <div
-            class="glass-card p-8 md:p-10 relative overflow-hidden group/card h-full flex flex-col justify-center"
+            class="glass-card p-6 md:p-10 relative overflow-hidden group/card h-full flex flex-col justify-center"
           >
             <div class="flex justify-between items-center mb-6 opacity-50">
               <div class="font-mono text-xs text-[#00f3ff] tracking-widest">
@@ -532,13 +587,13 @@
             </div>
 
             <h2
-              class="text-4xl md:text-5xl font-bold mb-6 split-word text-white whitespace-nowrap"
+              class="text-3xl md:text-5xl font-bold mb-6 split-word text-white whitespace-normal lg:whitespace-nowrap leading-tight"
             >
               ALÉM DO CÓDIGO
             </h2>
 
             <p
-              class="text-lg text-gray-300 leading-relaxed mb-8 border-l-2 border-[#b366ff]/50 pl-4"
+              class="text-base md:text-lg text-gray-300 leading-relaxed mb-8 border-l-2 border-[#b366ff]/50 pl-4"
             >
               Estudante de
               <strong class="text-white">Ciência da Computação</strong>. Minha
@@ -618,7 +673,7 @@
 
     <section
       id="skills"
-      class="py-32 px-6 bg-white/5 backdrop-blur-sm border-y border-white/5"
+      class="py-20 md:py-32 px-6 bg-white/5 backdrop-blur-sm border-y border-white/5"
     >
       <div class="container mx-auto">
         <h2
@@ -791,10 +846,10 @@
       </div>
     </section>
 
-    <section id="projects" class="py-32 px-6">
+    <section id="projects" class="py-20 md:py-32 px-6">
       <div class="container mx-auto">
-        <div class="flex justify-between items-end mb-20">
-          <h2 class="text-6xl md:text-8xl font-bold leading-none font-display">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+          <h2 class="text-5xl md:text-8xl font-bold leading-none font-display">
             SELECTED<br /><span
               class="text-transparent bg-clip-text bg-gradient-to-r from-[#b366ff] to-[#00f3ff]"
               >WORKS</span
@@ -813,7 +868,7 @@
             <div class="flex flex-col gap-3">
               <div>
                 <h3
-                  class="text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
+                  class="text-2xl md:text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
                 >
                   Cardápio Online
                 </h3>
@@ -847,7 +902,7 @@
             <div class="flex flex-col gap-3">
               <div>
                 <h3
-                  class="text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
+                  class="text-2xl md:text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
                 >
                   Buscador CEP
                 </h3>
@@ -879,7 +934,7 @@
             <div class="flex flex-col gap-3">
               <div>
                 <h3
-                  class="text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
+                  class="text-2xl md:text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
                 >
                   Vivae Imobiliária
                 </h3>
@@ -913,7 +968,7 @@
             <div class="flex flex-col gap-3">
               <div>
                 <h3
-                  class="text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
+                  class="text-2xl md:text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
                 >
                   Corpo&Arte
                 </h3>
@@ -945,7 +1000,7 @@
             <div class="flex flex-col gap-3">
               <div>
                 <h3
-                  class="text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
+                  class="text-2xl md:text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
                 >
                   Advocacia Souza
                 </h3>
@@ -973,7 +1028,7 @@
             <div class="flex flex-col gap-3">
               <div>
                 <h3
-                  class="text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
+                  class="text-2xl md:text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
                 >
                   VerdeLiz Estética
                 </h3>
@@ -1005,7 +1060,7 @@
             <div class="flex flex-col gap-3">
               <div>
                 <h3
-                  class="text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
+                  class="text-2xl md:text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
                 >
                   Suplementos Power
                 </h3>
@@ -1039,7 +1094,7 @@
             <div class="flex flex-col gap-3">
               <div>
                 <h3
-                  class="text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
+                  class="text-2xl md:text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
                 >
                   ImigraWeb
                 </h3>
@@ -1065,7 +1120,7 @@
             <div class="flex flex-col gap-3">
               <div>
                 <h3
-                  class="text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
+                  class="text-2xl md:text-3xl font-bold mb-1 group-hover:text-[#00f3ff] transition-colors"
                 >
                   Vintage Barber
                 </h3>
@@ -1093,19 +1148,19 @@
 
     <section
       id="contact"
-      class="h-screen flex flex-col justify-center items-center px-6 relative text-center"
+      class="h-[80vh] flex flex-col justify-center items-center px-6 relative text-center"
     >
       <p class="text-[#00f3ff] font-mono tracking-widest uppercase mb-6">
         Pronto para inovar?
       </p>
       <h2
-        class="text-6xl md:text-9xl font-extrabold mb-12 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#b366ff] hover:to-[#00f3ff] transition-all duration-500 cursor-pointer"
+        class="text-5xl md:text-9xl font-extrabold mb-12 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#b366ff] hover:to-[#00f3ff] transition-all duration-500 cursor-pointer"
       >
         DIGA OLÁ.
       </h2>
       <a
         href="mailto:assadyssaky@gmail.com"
-        class="magnetic-btn text-2xl md:text-4xl border-b border-white/30 pb-2 hover:text-[#b366ff] hover:border-[#b366ff] transition-all hover-trigger"
+        class="magnetic-btn text-xl md:text-4xl border-b border-white/30 pb-2 hover:text-[#b366ff] hover:border-[#b366ff] transition-all hover-trigger break-all md:break-normal"
         >assadyssaky@gmail.com</a
       >
 
@@ -1134,11 +1189,9 @@
 
     <script>
       window.addEventListener('load', () => {
-        // 1. PRELOADER EXIT
+        // 1. PRELOADER
         const preloader = document.getElementById('preloader');
         const loaderProgress = document.getElementById('loader-progress');
-
-        // Simula carregamento
         gsap.to(loaderProgress, {
           width: '100%',
           duration: 1.5,
@@ -1152,84 +1205,106 @@
           },
         });
 
-        // 2. MOUSE SYSTEM
+        // 2. MOBILE MENU LOGIC
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+          mobileMenu.classList.toggle('translate-x-full');
+        }
+
+        if (menuBtn) {
+          menuBtn.addEventListener('click', toggleMenu);
+          closeMenuBtn.addEventListener('click', toggleMenu);
+          mobileLinks.forEach((link) => {
+            link.addEventListener('click', toggleMenu);
+          });
+        }
+
+        // 3. MOUSE SYSTEM
         const cursor = document.getElementById('cursor');
         const trailsContainer = document.getElementById('trails-container');
         const hoverTriggers = document.querySelectorAll('.hover-trigger');
         const trails = [];
 
-        // Criar rastros
-        for (let i = 0; i < 12; i++) {
-          const div = document.createElement('div');
-          div.className = 'cursor-trail';
-          trailsContainer.appendChild(div);
-          trails.push({ el: div, x: 0, y: 0 });
-        }
+        // Check if device supports hover (Desktop)
+        const isTouch = window.matchMedia('(hover: none)').matches;
 
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
+        if (!isTouch) {
+          // Criar rastros
+          for (let i = 0; i < 12; i++) {
+            const div = document.createElement('div');
+            div.className = 'cursor-trail';
+            trailsContainer.appendChild(div);
+            trails.push({ el: div, x: 0, y: 0 });
+          }
 
-        document.addEventListener('mousemove', (e) => {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-          // Ativa cursor na primeira mexida
-          gsap.to(cursor, { opacity: 1, duration: 0.2 });
-          document.body.classList.add('custom-cursor-active');
+          let mouseX = window.innerWidth / 2;
+          let mouseY = window.innerHeight / 2;
 
-          gsap.to(cursor, {
-            x: mouseX,
-            y: mouseY,
-            duration: 0.1,
-            ease: 'power2.out',
-          });
-        });
+          document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            gsap.to(cursor, { opacity: 1, duration: 0.2 });
+            document.body.classList.add('custom-cursor-active');
 
-        function animateTrails() {
-          let x = mouseX;
-          let y = mouseY;
-          trails.forEach((t, i) => {
-            t.x += (x - t.x) * 0.3;
-            t.y += (y - t.y) * 0.3;
-            x = t.x;
-            y = t.y;
-            const scale = 1 - i / 12;
-            gsap.set(t.el, {
-              x: t.x,
-              y: t.y,
-              scale: scale,
-              opacity: scale * 0.6,
+            gsap.to(cursor, {
+              x: mouseX,
+              y: mouseY,
+              duration: 0.1,
+              ease: 'power2.out',
             });
           });
-          requestAnimationFrame(animateTrails);
-        }
-        animateTrails();
 
-        hoverTriggers.forEach((l) => {
-          l.addEventListener('mouseenter', () =>
-            cursor.classList.add('hovered')
-          );
-          l.addEventListener('mouseleave', () =>
-            cursor.classList.remove('hovered')
-          );
-        });
+          function animateTrails() {
+            let x = mouseX;
+            let y = mouseY;
+            trails.forEach((t, i) => {
+              t.x += (x - t.x) * 0.3;
+              t.y += (y - t.y) * 0.3;
+              x = t.x;
+              y = t.y;
+              const scale = 1 - i / 12;
+              gsap.set(t.el, {
+                x: t.x,
+                y: t.y,
+                scale: scale,
+                opacity: scale * 0.6,
+              });
+            });
+            requestAnimationFrame(animateTrails);
+          }
+          animateTrails();
 
-        // 3. MAGNETIC BTNS
-        document.querySelectorAll('.magnetic-btn').forEach((btn) => {
-          btn.addEventListener('mousemove', (e) => {
-            const r = btn.getBoundingClientRect();
-            const x = e.clientX - r.left - r.width / 2;
-            const y = e.clientY - r.top - r.height / 2;
-            gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.3 });
+          hoverTriggers.forEach((l) => {
+            l.addEventListener('mouseenter', () =>
+              cursor.classList.add('hovered')
+            );
+            l.addEventListener('mouseleave', () =>
+              cursor.classList.remove('hovered')
+            );
           });
-          btn.addEventListener('mouseleave', () => {
-            gsap.to(btn, {
-              x: 0,
-              y: 0,
-              duration: 0.5,
-              ease: 'elastic.out(1,0.3)',
+
+          // Magnetic BTNS only on Desktop
+          document.querySelectorAll('.magnetic-btn').forEach((btn) => {
+            btn.addEventListener('mousemove', (e) => {
+              const r = btn.getBoundingClientRect();
+              const x = e.clientX - r.left - r.width / 2;
+              const y = e.clientY - r.top - r.height / 2;
+              gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.3 });
+            });
+            btn.addEventListener('mouseleave', () => {
+              gsap.to(btn, {
+                x: 0,
+                y: 0,
+                duration: 0.5,
+                ease: 'elastic.out(1,0.3)',
+              });
             });
           });
-        });
+        }
 
         // 4. KINETIC TEXT
         const splitWords = document.querySelectorAll('.split-word');
@@ -1252,7 +1327,7 @@
           });
         });
 
-        // 5. THREE.JS (GEOMETRIC CLOUD)
+        // 5. THREE.JS
         try {
           const cvs = document.getElementById('bg-canvas');
           const scene = new THREE.Scene();
@@ -1281,7 +1356,7 @@
           const stars = new THREE.Points(sGeo, sMat);
           scene.add(stars);
 
-          // Geometric Shapes Group
+          // Geometries
           const geoGroup = new THREE.Group();
           const material = new THREE.MeshBasicMaterial({
             color: 0xb366ff,
@@ -1326,7 +1401,6 @@
             const t = clock.getElapsedTime();
             stars.rotation.y = t * 0.02;
 
-            // Floating Shapes
             geoGroup.rotation.y = t * 0.1 + mX * 0.2;
             geoGroup.rotation.x = mY * 0.2;
 
