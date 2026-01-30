@@ -115,8 +115,6 @@
       }
 
       /* --- 3. CURSOR & RESPONSIVIDADE --- */
-
-      /* DESKTOP (Com Mouse) */
       body.custom-cursor-active {
         cursor: none;
       }
@@ -169,33 +167,29 @@
         transform: translate(-50%, -50%);
         transition: opacity 0.2s;
       }
-
-      /* MOBILE/TABLET (Sem Mouse ou Telas < 1024px) */
       @media (hover: none), (max-width: 1024px) {
         #cursor,
         .cursor-trail,
         #trails-container {
-          display: none !important; /* Some visualmente */
+          display: none !important;
         }
         body {
-          cursor: auto !important; /* Volta o cursor nativo */
+          cursor: auto !important;
         }
       }
-
       @media (hover: hover) and (pointer: fine) {
         #cursor {
           display: block;
         }
       }
 
-      /* --- 4. TYPOGRAPHY & ANIMATIONS --- */
+      /* --- 4. UI GERAL --- */
       h1,
       h2,
       h3,
       .font-display {
         font-family: 'Syne', sans-serif;
       }
-
       .kinetic-text {
         overflow: hidden;
         display: inline-block;
@@ -210,7 +204,6 @@
         transform: translateY(0);
       }
 
-      /* --- 5. CARDS & UI --- */
       .glass-card {
         background: rgba(255, 255, 255, 0.02);
         border: 1px solid rgba(255, 255, 255, 0.05);
@@ -219,26 +212,6 @@
         transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         overflow: hidden;
         position: relative;
-      }
-      .glass-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 50%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.1),
-          transparent
-        );
-        transform: skewX(-25deg);
-        transition: 0.5s;
-        pointer-events: none;
-      }
-      .glass-card:hover::before {
-        left: 150%;
       }
       .glass-card:hover {
         border-color: var(--primary);
@@ -298,17 +271,13 @@
       .marquee-content {
         display: flex;
         white-space: nowrap;
-        /* VELOCIDADE DESKTOP */
         animation: scroll 25s linear infinite;
       }
-
-      /* VELOCIDADE MOBILE/TABLET (Muito mais rápida) */
       @media (max-width: 1024px) {
         .marquee-content {
           animation-duration: 8s !important;
         }
       }
-
       .marquee-item {
         font-family: 'Syne', sans-serif;
         font-weight: 800;
@@ -333,12 +302,186 @@
         opacity: 0.3;
         pointer-events: none;
       }
-
-      #about h2 .kinetic-char {
-        padding-right: 15px;
-      }
       #mobile-menu {
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* --- SESSÃO DE TESTEMUNHOS (CORRIGIDO E UNIFORME) --- */
+      #testimonials-section {
+        padding: 8rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+        position: relative;
+        background: transparent;
+      }
+
+      /* Sombras laterais para fade */
+      #testimonials-section::before,
+      #testimonials-section::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 150px;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+      }
+      #testimonials-section::before {
+        left: 0;
+        background: linear-gradient(to right, var(--dark), transparent);
+      }
+      #testimonials-section::after {
+        right: 0;
+        background: linear-gradient(to left, var(--dark), transparent);
+      }
+
+      /* O Trilho */
+      .t-track {
+        display: flex;
+        gap: 2rem;
+        width: max-content;
+        animation: slider 80s linear infinite; /* Mais lento para dar tempo de ler */
+        padding: 10px 0; /* Espaço para a sombra do hover não cortar */
+      }
+
+      /* Pausa no hover */
+      .t-track:hover {
+        animation-play-state: paused;
+      }
+
+      /* Card Individual - A MÁGICA ESTÁ AQUI */
+      .t-card {
+        width: 400px;
+        height: 570px; /* Altura FIXA para todos ficarem iguais */
+        flex-shrink: 0;
+
+        background: rgba(
+          15,
+          15,
+          20,
+          0.6
+        ); /* Um pouco mais escuro para leitura */
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 2.5rem;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Empurra o autor pro final */
+
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+        user-select: none;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .t-card:hover {
+        border-color: var(--primary);
+        transform: translateY(-5px);
+        background: rgba(25, 20, 30, 0.95);
+        box-shadow: 0 10px 30px -10px rgba(179, 102, 255, 0.15);
+        z-index: 10;
+      }
+
+      /* Estrelas */
+      .t-stars {
+        color: #ffb400;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+        flex-shrink: 0;
+      }
+
+      /* Texto do Comentário */
+      .t-quote {
+        font-family: 'Space Grotesk', sans-serif;
+        color: #e5e0f7;
+        font-size: 0.95rem;
+        line-height: 1.7;
+
+        /* Ocupa o espaço disponível, mas permite scroll se for GIGANTE */
+        flex-grow: 1;
+        overflow-y: auto;
+        padding-right: 5px; /* Espaço para scroll não colar no texto */
+
+        /* Esconde a barra de rolagem (estética) */
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary) transparent;
+      }
+
+      /* Estilização da barra de scroll fina (Webkit) */
+      .t-quote::-webkit-scrollbar {
+        width: 4px;
+      }
+      .t-quote::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .t-quote::-webkit-scrollbar-thumb {
+        background: rgba(179, 102, 255, 0.3);
+        border-radius: 4px;
+      }
+
+      /* Autor (Sempre no fundo) */
+      .t-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 1.5rem;
+        margin-top: 1.5rem;
+        flex-shrink: 0; /* Impede que o autor seja esmagado */
+      }
+
+      .t-avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: black;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+
+      .t-info h4 {
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        color: white;
+        margin: 0;
+        font-size: 1rem;
+      }
+      .t-info p {
+        color: #888;
+        font-size: 0.8rem;
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        .t-card {
+          width: 300px;
+          height: 500px;
+          padding: 1.5rem;
+        }
+        .t-track {
+          animation-duration: 40s;
+        }
+      }
+
+      @keyframes slider {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
       }
     </style>
   </head>
@@ -356,7 +499,6 @@
 
     <div id="cursor"></div>
     <div id="trails-container"></div>
-
     <div class="noise-overlay"></div>
     <div class="cyber-grid"></div>
     <canvas id="bg-canvas"></canvas>
@@ -474,8 +616,7 @@
             Olá, sou <strong>Yssaky Assad Luz</strong>. Especialista em criar
             experiências digitais onde a
             <span class="text-white">engenharia</span> encontra a
-            <span class="text-white">arte</span>. Foco em performance,
-            interatividade e impacto visual.
+            <span class="text-white">arte</span>.
           </p>
           <div class="flex gap-4">
             <a
@@ -1185,6 +1326,143 @@
       </div>
     </section>
 
+    <section id="testimonials-section">
+      <div class="container mx-auto px-6 mb-12">
+        <p
+          class="text-[#b366ff] font-mono text-xs tracking-widest mb-2 reveal-item"
+        >
+          // CLIENT_FEEDBACK
+        </p>
+        <h2 class="text-4xl md:text-6xl font-bold font-display text-white">
+          CLIENTES
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-[#00f3ff] to-[#b366ff]"
+            >SATISFEITOS</span
+          >
+        </h2>
+      </div>
+
+      <div class="t-track" id="track-content">
+        <div class="t-card">
+          <div class="t-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="t-quote">
+            "Simplesmente excepcional! O freelancer demonstrou um domínio
+            impressionante de WordPress desde o início do projeto. Entendeu
+            perfeitamente o que eu precisava, apresentou sugestões que
+            melhoraram muito o resultado final e entregou tudo dentro do prazo
+            combinado, com qualidade acima do esperado. A comunicação foi clara,
+            rápida e eficiente, sempre mantendo transparência em cada etapa.
+            Além disso, mostrou profissionalismo, organização e cuidado com os
+            detalhes. Recomendo!"
+          </p>
+          <div class="t-author">
+            <div class="t-avatar">M</div>
+            <div class="t-info">
+              <h4>Marta</h4>
+              <p>CEO, ImigraWeb</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <div class="t-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="t-quote">
+            "O profissional realizou o projeto com competência e cumpriu todos
+            os requisitos solicitados. A comunicação foi clara e objetiva, e o
+            resultado final no WordPress ficou funcional e bem organizado.
+            Recomendo para quem busca alguém confiável e eficiente para
+            trabalhos de site e design de páginas."
+          </p>
+          <div class="t-author">
+            <div class="t-avatar">M</div>
+            <div class="t-info">
+              <h4>Marta</h4>
+              <p>CEO, ImigraWeb</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <div class="t-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="t-quote">
+            "Estou fazendo o projeto da minha loja com o Yssaky e o resultado da
+            parte visual está impecável. Contratei o design dos banners e cards,
+            e ele entregou um trabalho de UX/UI moderno e de altíssimo nível. O
+            grande diferencial é que, por ser programador Full-Stack, ele não
+            faz apenas 'desenhos', ele já cria pensando na estrutura do site.
+            Além disso, me deu uma consultoria técnica excelente revisando
+            scripts de automação. Profissional muito atencioso e parceiro.
+            Recomendo demais!"
+          </p>
+          <div class="t-author">
+            <div class="t-avatar">BS</div>
+            <div class="t-info">
+              <h4>Bruno Silva</h4>
+              <p>CEO, Top Torcida Sports</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <div class="t-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <p class="t-quote">
+            "Trabalho impecável. O profissional demonstrou um domínio técnico
+            acima da média, resolvendo problemas críticos de banco de dados e
+            integração com WooCommerce que outros não conseguiram. Além de
+            entregar o layout exatamente como solicitado, otimizou a performance
+            do site e corrigiu erros de responsividade mobile que estavam
+            travando as vendas. Comunicação clara, proativo e cumpre prazos. Com
+            certeza faremos novos projetos juntos."
+          </p>
+          <div class="t-author">
+            <div class="t-avatar">BS</div>
+            <div class="t-info">
+              <h4>Bruno Silva</h4>
+              <p>CEO, Top Torcida Sports</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <div class="t-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="t-quote">
+            "Ótimo profissional! Conseguiu captar exatamente o que eu queria a
+            partir de um briefing simples. Desenvolveu meu site com muita
+            qualidade, clareza e alinhamento com o propósito do negócio.
+            Comunicação clara, sempre disponível e disposto a agregar com ideias
+            e soluções. Recomendo!"
+          </p>
+          <div class="t-author">
+            <div class="t-avatar">GA</div>
+            <div class="t-info">
+              <h4>Gabriela Alves</h4>
+              <p>Gerente de Marketing, Dkvision360</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section
       id="contact"
       class="h-[80vh] flex flex-col justify-center items-center px-6 relative text-center"
@@ -1226,7 +1504,16 @@
 
     <script>
       window.addEventListener('load', () => {
-        // 1. PRELOADER
+        // --- 1. SCRIPT DE CLONAGEM AUTOMÁTICA (NOVO) ---
+        // Isso resolve o problema da quantidade. Se você adicionar mais cards no HTML,
+        // este script duplica eles automaticamente para criar o loop perfeito.
+        const track = document.getElementById('track-content');
+        if (track) {
+          // Clona o conteúdo inteiro e adiciona ao final
+          track.innerHTML += track.innerHTML;
+        }
+
+        // --- 2. PRELOADER ---
         const preloader = document.getElementById('preloader');
         const loaderProgress = document.getElementById('loader-progress');
         gsap.to(loaderProgress, {
@@ -1242,16 +1529,14 @@
           },
         });
 
-        // 2. MOBILE MENU
+        // --- 3. MOBILE MENU ---
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const closeMenuBtn = document.getElementById('close-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
-
         function toggleMenu() {
           mobileMenu.classList.toggle('translate-x-full');
         }
-
         if (menuBtn) {
           menuBtn.addEventListener('click', toggleMenu);
           closeMenuBtn.addEventListener('click', toggleMenu);
@@ -1260,16 +1545,12 @@
           });
         }
 
-        // 3. MOUSE SYSTEM
+        // --- 4. MOUSE SYSTEM ---
         const cursor = document.getElementById('cursor');
         const trailsContainer = document.getElementById('trails-container');
         const hoverTriggers = document.querySelectorAll('.hover-trigger');
         const trails = [];
-
-        // Verificação de toque (Mobile/Tablet)
         const isTouch = window.matchMedia('(hover: none)').matches;
-
-        // Só ativa cursor se NÃO for touch (Desktop)
         if (!isTouch) {
           for (let i = 0; i < 12; i++) {
             const div = document.createElement('div');
@@ -1277,10 +1558,8 @@
             trailsContainer.appendChild(div);
             trails.push({ el: div, x: 0, y: 0 });
           }
-
           let mouseX = window.innerWidth / 2;
           let mouseY = window.innerHeight / 2;
-
           document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
@@ -1293,7 +1572,6 @@
               ease: 'power2.out',
             });
           });
-
           function animateTrails() {
             let x = mouseX;
             let y = mouseY;
@@ -1313,7 +1591,6 @@
             requestAnimationFrame(animateTrails);
           }
           animateTrails();
-
           hoverTriggers.forEach((l) => {
             l.addEventListener('mouseenter', () =>
               cursor.classList.add('hovered'),
@@ -1322,8 +1599,6 @@
               cursor.classList.remove('hovered'),
             );
           });
-
-          // Magnetic BTNS (Só desktop)
           document.querySelectorAll('.magnetic-btn').forEach((btn) => {
             btn.addEventListener('mousemove', (e) => {
               const r = btn.getBoundingClientRect();
@@ -1342,7 +1617,7 @@
           });
         }
 
-        // 4. KINETIC TEXT
+        // --- 5. KINETIC TEXT ---
         const splitWords = document.querySelectorAll('.split-word');
         splitWords.forEach((word) => {
           const text = word.innerText;
@@ -1362,7 +1637,7 @@
           });
         });
 
-        // 5. THREE.JS
+        // --- 6. THREE.JS (BACKGROUND) ---
         try {
           const cvs = document.getElementById('bg-canvas');
           const scene = new THREE.Scene();
@@ -1374,7 +1649,6 @@
           );
           const ren = new THREE.WebGLRenderer({ canvas: cvs, alpha: true });
           ren.setSize(window.innerWidth, window.innerHeight);
-
           const sGeo = new THREE.BufferGeometry();
           const sCnt = 1000;
           const sPos = new Float32Array(sCnt * 3);
@@ -1389,7 +1663,6 @@
           });
           const stars = new THREE.Points(sGeo, sMat);
           scene.add(stars);
-
           const geoGroup = new THREE.Group();
           const material = new THREE.MeshBasicMaterial({
             color: 0xb366ff,
@@ -1417,14 +1690,12 @@
           geoGroup.add(ico2);
           scene.add(geoGroup);
           cam.position.z = 3;
-
           let mX = 0,
             mY = 0;
           document.addEventListener('mousemove', (e) => {
             mX = e.clientX / window.innerWidth - 0.5;
             mY = e.clientY / window.innerHeight - 0.5;
           });
-
           const clock = new THREE.Clock();
           function animate() {
             const t = clock.getElapsedTime();
@@ -1447,7 +1718,7 @@
           });
         } catch (e) {}
 
-        // 6. LENIS
+        // --- 7. LENIS SMOOTH SCROLL ---
         const lenis = new Lenis({ duration: 1.2, smooth: true });
         function raf(time) {
           lenis.raf(time);
